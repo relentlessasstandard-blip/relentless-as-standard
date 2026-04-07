@@ -148,6 +148,9 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
+      /* Background for when video poster fails or is not present */
+      background: url('hero-fallback.jpg') no-repeat center center;
+      background-size: cover;
     }
     .hero-video {
       position: absolute;
@@ -423,8 +426,7 @@
       width: 100%; height: 100%; border: none;
     }
 
-    /* SQUARE RATIO FOR ACT IV & V */
-    .video-thumb.square, .video-frame-wrap.square { aspect-ratio: 1/1; }
+    .video-thumb.wide, .video-frame-wrap.wide { aspect-ratio: 16/9; }
 
     .act-number {
       font-family: 'Anton', sans-serif;
@@ -558,13 +560,13 @@
 </div>
 
 <section id="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=80">
-    <source src="/videos/hero.mp4" type="video/mp4" />
+  <video class="hero-video" autoplay muted loop playsinline poster="hero-poster.jpg">
+    <source src="relentless_ethos_montage.mp4" type="video/mp4" />
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">The Hero's Journey Begins Here</p>
-    <h1 class="hero-headline">Your Life Is Not<br><span class="highlight">A Rehearsal.</span></h1>
+    <h1 class="hero-headline">YOUR LIFE IS NOT<br><span class="highlight">A REHEARSAL.</span></h1>
     <p class="hero-sub">Enter the Arena. Master the Pillars.<br>Become the Hero of Your Own Story.</p>
     <div class="hero-ctas">
       <a href="#act-i" class="btn-primary">Enter The Arena</a>
@@ -654,11 +656,11 @@
   <div class="act-inner reversed">
     <div class="reveal-left delay-1">
       <div class="video-wrap">
-        <div class="video-thumb square" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
+        <div class="video-thumb wide" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
           <div class="video-thumb-bg" style="background-image: url('/images/Batman Dark Knight.png');"></div>
           <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
         </div>
-        <div class="video-frame-wrap square" id="frame-4"></div>
+        <div class="video-frame-wrap wide" id="frame-4"></div>
       </div>
     </div>
     <div class="reveal-right delay-2">
@@ -681,11 +683,11 @@
     </div>
     <div class="reveal-right delay-2">
       <div class="video-wrap">
-        <div class="video-thumb square" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
+        <div class="video-thumb wide" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
           <div class="video-thumb-bg" style="background-image: url('/images/He Man.png');"></div>
           <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
         </div>
-        <div class="video-frame-wrap square" id="frame-5"></div>
+        <div class="video-frame-wrap wide" id="frame-5"></div>
       </div>
     </div>
   </div>
