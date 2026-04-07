@@ -423,7 +423,8 @@
       width: 100%; height: 100%; border: none;
     }
 
-    .video-thumb.wide, .video-frame-wrap.wide { aspect-ratio: 16/9; }
+    /* SQUARE RATIO FOR ACT IV & V */
+    .video-thumb.square, .video-frame-wrap.square { aspect-ratio: 1/1; }
 
     .act-number {
       font-family: 'Anton', sans-serif;
@@ -482,7 +483,7 @@
       text-align: center;
       background: linear-gradient(180deg, var(--deep-red) 0%, #3a0000 40%, var(--black) 100%);
     }
-    .cta-headline { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 5rem); margin-bottom: 24px; }
+    .cta-headline { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; line-height: 1.2; }
     .cta-subtext { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: var(--light-gray); margin-bottom: 60px; }
     .cta-grid { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn-cta {
@@ -653,11 +654,11 @@
   <div class="act-inner reversed">
     <div class="reveal-left delay-1">
       <div class="video-wrap">
-        <div class="video-thumb wide" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
+        <div class="video-thumb square" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
           <div class="video-thumb-bg" style="background-image: url('/images/Batman Dark Knight.png');"></div>
           <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
         </div>
-        <div class="video-frame-wrap wide" id="frame-4"></div>
+        <div class="video-frame-wrap square" id="frame-4"></div>
       </div>
     </div>
     <div class="reveal-right delay-2">
@@ -680,11 +681,11 @@
     </div>
     <div class="reveal-right delay-2">
       <div class="video-wrap">
-        <div class="video-thumb wide" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
+        <div class="video-thumb square" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
           <div class="video-thumb-bg" style="background-image: url('/images/He Man.png');"></div>
           <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
         </div>
-        <div class="video-frame-wrap wide" id="frame-5"></div>
+        <div class="video-frame-wrap square" id="frame-5"></div>
       </div>
     </div>
   </div>
@@ -693,7 +694,7 @@
 <div class="strip"></div>
 
 <section id="final-cta">
-  <h2 class="cta-headline reveal">This Is Your Call To Action</h2>
+  <h2 class="cta-headline reveal">Only you can become relentless in your pursuits - so don't give up</h2>
   <p class="cta-subtext reveal delay-1">No excuses. No shortcuts. Relentless is the standard.</p>
   <div class="cta-grid reveal delay-2">
     <a href="https://www.youtube.com/@relentlessasstandard" target="_blank" class="btn-cta featured">▶ Watch on YouTube</a>
