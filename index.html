@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Relentless Is The Standard</title>
+  <title>Relentless.As.Standard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -30,11 +30,6 @@
       overflow-x: hidden;
     }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--black); }
-    ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
-
     /* ── NAVBAR ── */
     #navbar {
       position: fixed;
@@ -44,100 +39,37 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
     }
-    #navbar.scrolled {
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(12px);
-      padding: 14px 40px;
-      border-bottom: 1px solid rgba(57,255,20,0.12);
-    }
+    #navbar.scrolled { padding: 12px 40px; background: rgba(0,0,0,0.95); border-bottom: 1px solid rgba(57,255,20,0.2); }
+
     .nav-logo {
       font-family: 'Anton', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: 4px;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--white);
       text-decoration: none;
     }
     .nav-logo span { color: var(--neon); }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
+
+    .nav-right { display: flex; align-items: center; gap: 30px; }
+    .nav-links { display: flex; gap: 20px; list-style: none; }
     .nav-links a {
-      font-family: 'Inter', sans-serif;
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 2px;
+      font-weight: 600;
       text-transform: uppercase;
       color: var(--light-gray);
       text-decoration: none;
-      transition: color 0.2s;
+      letter-spacing: 1px;
     }
     .nav-links a:hover { color: var(--neon); }
-    .nav-socials {
-      display: flex;
-      gap: 20px;
-      align-items: center;
-    }
-    .nav-socials a {
-      color: var(--gray);
-      transition: color 0.2s;
-      text-decoration: none;
-    }
-    .nav-socials a:hover { color: var(--neon); }
-    .nav-socials svg { width: 18px; height: 18px; fill: currentColor; }
 
-    /* Mobile hamburger */
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--white);
-      transition: all 0.3s;
-    }
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.97);
-      z-index: 999;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 40px;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: 'Anton', sans-serif;
-      font-size: 2rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--white);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--neon); }
-    .mobile-close {
-      position: absolute;
-      top: 24px; right: 32px;
-      font-size: 2rem;
-      color: var(--white);
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-    }
+    .nav-socials { display: flex; gap: 15px; border-left: 1px solid #333; padding-left: 20px; }
+    .nav-socials svg { width: 18px; height: 18px; fill: var(--white); transition: fill 0.2s; }
+    .nav-socials a:hover svg { fill: var(--neon); }
 
     /* ── HERO ── */
     #hero {
@@ -147,593 +79,238 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      overflow: hidden;
-      /* Background for when video poster fails or is not present */
-      background: url('hero-fallback.jpg') no-repeat center center;
-      background-size: cover;
+      background: url('https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=2000') no-repeat center center/cover;
     }
-    .hero-video {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 1;
-    }
-    .hero-overlay::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.98) 100%);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      padding: 0 24px;
-    }
-    .hero-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 6px;
-      text-transform: uppercase;
-      color: var(--neon);
-      margin-bottom: 24px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
-    }
-    .hero-headline {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2.8rem, 7vw, 6rem);
-      line-height: 1.05;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--white);
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.6s forwards;
-    }
-    .hero-headline .highlight { color: var(--neon); }
-    .hero-sub {
-      font-family: 'Inter', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      font-weight: 300;
-      color: var(--light-gray);
-      max-width: 640px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.9s forwards;
-    }
-    .hero-ctas {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: fadeUp 1s ease 1.2s forwards;
-    }
+    .hero-overlay { position: absolute; inset: 0; background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.9) 100%); }
+    .hero-content { position: relative; z-index: 2; max-width: 900px; padding: 20px; }
+    .hero-headline { font-family: 'Anton', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); line-height: 1; margin-bottom: 40px; text-transform: uppercase; }
+    .hero-headline span { color: var(--neon); }
 
-    /* ── BUTTONS ── */
-    .btn-primary {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 18px 40px;
+    .btn-arena {
+      display: inline-block;
+      padding: 20px 50px;
       background: var(--neon);
       color: var(--black);
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 20px rgba(57,255,20,0.3);
-    }
-    .btn-primary:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 40px rgba(57,255,20,0.6);
-    }
-    .btn-secondary {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 17px 40px;
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: transform 0.2s, border-color 0.2s, color 0.2s;
-    }
-    .btn-secondary:hover {
-      transform: scale(1.04);
-      border-color: var(--neon);
-      color: var(--neon);
-    }
-
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeIn 1s ease 2s forwards;
-    }
-    .scroll-indicator span {
-      font-size: 0.6rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--gray);
-    }
-    .scroll-mouse {
-      width: 24px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 12px;
-      display: flex;
-      justify-content: center;
-      padding-top: 6px;
-    }
-    .scroll-wheel {
-      width: 3px;
-      height: 8px;
-      background: var(--neon);
-      border-radius: 2px;
-      animation: scrollWheel 1.5s ease infinite;
-    }
-
-    /* ── SECTION SHARED ── */
-    .section-wrapper {
-      padding: 120px 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* ── ACT SECTIONS ── */
-    .act-section {
-      position: relative;
-      padding: 140px 0;
-      overflow: hidden;
-    }
-    .act-section:nth-child(even) { background: var(--charcoal); }
-    .act-section:nth-child(odd) { background: var(--black); }
-
-    .act-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .act-inner.reversed { direction: rtl; }
-    .act-inner.reversed > * { direction: ltr; }
-
-    .act-meta {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      font-weight: 500;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: var(--neon);
-      margin-bottom: 16px;
-    }
-    .act-title {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      color: var(--white);
-    }
-    .act-quote {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
-      font-weight: 700;
-      font-style: italic;
-      color: var(--neon);
-      border-left: 3px solid var(--neon);
-      padding-left: 20px;
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
-    .act-story {
-      font-family: 'Inter', sans-serif;
+      font-weight: 900;
       font-size: 1rem;
-      font-weight: 300;
-      color: var(--light-gray);
-      line-height: 1.9;
-    }
-
-    /* ── VIDEO EMBED SYSTEM ── */
-    .video-wrap {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      background: #0a0a0a;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(57,255,20,0.08);
-    }
-
-    .video-thumb {
-      position: relative;
-      cursor: pointer;
-      aspect-ratio: 9/16;
-      overflow: hidden;
-    }
-
-    .video-thumb-bg {
-      position: absolute;
-      inset: 0;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      transition: transform 0.4s ease;
-      z-index: 1;
-    }
-    .video-thumb:hover .video-thumb-bg { transform: scale(1.04); }
-
-    .video-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.55) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .play-btn {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.45);
-      border: 2.5px solid var(--neon);
-      display: flex;
-      align-items: center; justify-content: center;
-      backdrop-filter: blur(6px);
-      z-index: 3;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.25s ease;
-    }
-    .video-thumb:hover .play-btn { opacity: 1; transform: scale(1.1); }
-    .play-btn svg { width: 30px; height: 30px; fill: var(--neon); margin-left: 5px; }
-
-    .video-frame-wrap { display: none; aspect-ratio: 9/16; }
-    .video-frame-wrap.active { display: block; position: relative; }
-    .video-frame-wrap iframe {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; border: none;
-    }
-
-    .video-thumb.wide, .video-frame-wrap.wide { aspect-ratio: 16/9; }
-
-    .act-number {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(6rem, 12vw, 14rem);
-      color: rgba(255,255,255,0.025);
-      position: absolute;
-      top: 40px; right: 40px;
-      pointer-events: none;
-    }
-
-    /* ── ABOUT SECTION ── */
-    #about {
-      padding: 140px 40px;
-      text-align: center;
-      background: var(--charcoal2);
-    }
-    .about-inner { max-width: 800px; margin: 0 auto; }
-    .about-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem;
-      letter-spacing: 6px;
       text-transform: uppercase;
-      color: var(--neon);
-      margin-bottom: 20px;
+      text-decoration: none;
+      border-radius: 4px;
+      box-shadow: 0 0 20px rgba(57,255,20,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    .about-headline {
-      font-family: 'Anton', sans-serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .about-body {
-      font-family: 'Inter', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 300;
-      color: var(--light-gray);
-      line-height: 1.9;
-      margin-bottom: 40px;
-    }
-    .about-img {
-      width: 160px; height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(57,255,20,0.3);
-      margin: 0 auto 32px;
-      display: block;
-    }
+    .btn-arena:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(57,255,20,0.7); }
 
-    /* ── TRANSITION STRIPS ── */
-    .strip { height: 2px; background: linear-gradient(90deg, transparent, var(--neon), transparent); opacity: 0.3; }
+    /* ── SECTIONS ── */
+    .section-padding { padding: 120px 40px; }
+    .act-section:nth-child(even) { background: var(--charcoal); }
+    .act-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .reversed { direction: rtl; }
+    .reversed > * { direction: ltr; }
 
-    /* ── FINAL CTA ── */
-    #final-cta {
-      position: relative;
-      padding: 160px 40px;
-      text-align: center;
-      background: linear-gradient(180deg, var(--deep-red) 0%, #3a0000 40%, var(--black) 100%);
-    }
-    .cta-headline { font-family: 'Anton', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; line-height: 1.2; }
-    .cta-subtext { font-family: 'Inter', sans-serif; font-size: 1.1rem; color: var(--light-gray); margin-bottom: 60px; }
-    .cta-grid { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-    .btn-cta {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 2.5px;
-      padding: 16px 28px; border-radius: 4px;
-      text-decoration: none; color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
-      transition: all 0.2s;
-    }
-    .btn-cta:hover { border-color: var(--neon); color: var(--neon); transform: translateY(-3px); }
-    .btn-cta.featured { background: var(--neon); color: var(--black); border-color: var(--neon); }
+    .act-title { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem); margin-bottom: 20px; text-transform: uppercase; }
+    .act-quote { font-family: 'Montserrat', sans-serif; font-style: italic; color: var(--neon); border-left: 3px solid var(--neon); padding-left: 20px; margin-bottom: 20px; font-weight: 700; }
 
-    /* ── FOOTER ── */
-    footer { background: var(--charcoal); padding: 60px 40px; border-top: 1px solid rgba(255,255,255,0.06); }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 32px; }
-    .footer-logo { font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 6px; text-transform: uppercase; }
+    /* ── VIDEOS ── */
+    .video-wrap { position: relative; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .video-thumb { cursor: pointer; aspect-ratio: 9/16; position: relative; }
+    .video-thumb.square { aspect-ratio: 1/1; }
+    .video-thumb-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: 0.4s; }
+    .video-thumb:hover .video-thumb-bg { transform: scale(1.05); }
+    .video-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; }
+    .video-overlay svg { width: 60px; fill: var(--neon); filter: drop-shadow(0 0 10px rgba(57,255,20,0.5)); }
+
+    .video-frame-wrap { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+    .video-frame-wrap.active { display: block; z-index: 5; }
+    iframe { width: 100%; height: 100%; border: none; }
+
+    /* ── FOOTER & CTA ── */
+    #final-cta { padding: 140px 40px; text-align: center; background: linear-gradient(180deg, var(--deep-red) 0%, var(--black) 100%); }
+    .cta-headline { font-family: 'Anton', sans-serif; font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 50px; }
+    
+    .social-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
+    .social-card {
+      width: 200px; padding: 30px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; text-decoration: none; color: white; transition: 0.3s;
+    }
+    .social-card:hover { background: var(--neon); color: black; border-color: var(--neon); transform: translateY(-5px); }
+    .social-card span { display: block; font-weight: 900; margin-top: 10px; font-size: 0.8rem; letter-spacing: 1px; }
+
+    footer { padding: 80px 40px; background: var(--black); text-align: center; border-top: 1px solid #222; }
+    .footer-logo { font-family: 'Anton', sans-serif; font-size: 2rem; color: var(--white); margin-bottom: 10px; }
     .footer-logo span { color: var(--neon); }
-    .footer-socials { display: flex; gap: 28px; }
-    .footer-socials a { color: var(--gray); text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
-    .footer-socials a:hover { color: var(--neon); }
-    .footer-socials svg { width: 18px; height: 18px; fill: currentColor; }
 
     /* ── ANIMATIONS ── */
-    .reveal, .reveal-left, .reveal-right { opacity: 0; transition: all 0.8s ease; }
-    .reveal { transform: translateY(40px); }
-    .reveal-left { transform: translateX(-40px); }
-    .reveal-right { transform: translateX(40px); }
-    .visible { opacity: 1; transform: translate(0); }
+    .reveal-left, .reveal-right { opacity: 0; transition: 1s ease; }
+    .reveal-left { transform: translateX(-50px); }
+    .reveal-right { transform: translateX(50px); }
+    .visible { opacity: 1; transform: translateX(0); }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes scrollWheel { 0% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(12px); } }
-
+    /* ── MOBILE OPTIMIZATION ── */
     @media (max-width: 900px) {
-      .act-inner { grid-template-columns: 1fr; gap: 48px; }
+      #navbar { padding: 15px 20px; }
       .nav-links, .nav-socials { display: none; }
-      .hamburger { display: flex; }
-      .video-thumb, .video-frame-wrap { aspect-ratio: 16/9; }
-      .act-meta, .act-title, .act-quote, .act-story { text-align: center; }
-      .act-quote { border-left: none; border-top: 3px solid; padding-left: 0; padding-top: 16px; }
+      .act-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+      .video-thumb { aspect-ratio: 16/9; }
+      .video-thumb.square { aspect-ratio: 1/1; }
+      .section-padding { padding: 80px 20px; }
+      .social-card { width: 100%; max-width: 300px; }
     }
   </style>
 </head>
 <body>
 
 <nav id="navbar">
-  <a href="#hero" class="nav-logo">Relentless<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#hero">Home</a></li>
-    <li><a href="#act-i">Discipline</a></li>
-    <li><a href="#act-ii">Motivation</a></li>
-    <li><a href="#act-iii">Execution</a></li>
-    <li><a href="#act-iv">Purpose</a></li>
-    <li><a href="#act-v">Legacy</a></li>
-  </ul>
-  <div class="nav-socials">
-    <a href="https://www.instagram.com/relentless_as_standard/" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-    <a href="https://www.tiktok.com/@relentlessasstandard" target="_blank"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/></svg></a>
+  <a href="#hero" class="nav-logo">Relentless.<span>As.Standard</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#act-i">Discipline</a></li>
+      <li><a href="#act-iii">Execution</a></li>
+      <li><a href="#act-v">Legacy</a></li>
+    </ul>
+    <div class="nav-socials">
+      <a href="https://www.instagram.com/relentless_as_standard/" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://www.tiktok.com/@relentlessasstandard" target="_blank"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/></svg></a>
+      <a href="https://www.youtube.com/@relentlessasstandard" target="_blank"><svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a>
+    </div>
   </div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#hero" class="mobile-link">Home</a>
-  <a href="#act-i" class="mobile-link">Discipline</a>
-  <a href="#act-ii" class="mobile-link">Motivation</a>
-  <a href="#act-iii" class="mobile-link">Execution</a>
-  <a href="#act-iv" class="mobile-link">Purpose</a>
-  <a href="#act-v" class="mobile-link">Legacy</a>
-</div>
-
 <section id="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="hero-poster.jpg">
-    <source src="relentless_ethos_montage.mp4" type="video/mp4" />
-  </video>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">The Hero's Journey Begins Here</p>
-    <h1 class="hero-headline">YOUR LIFE IS NOT<br><span class="highlight">A REHEARSAL.</span></h1>
-    <p class="hero-sub">Enter the Arena. Master the Pillars.<br>Become the Hero of Your Own Story.</p>
-    <div class="hero-ctas">
-      <a href="#act-i" class="btn-primary">Enter The Arena</a>
-      <a href="https://www.youtube.com/@relentlessasstandard" target="_blank" class="btn-secondary">Watch The Journey</a>
-    </div>
+    <h1 class="hero-headline">YOUR LIFE IS NOT<br><span>A REHEARSAL.</span></h1>
+    <a href="#act-i" class="btn-arena">Enter The Arena</a>
   </div>
 </section>
 
-<div class="strip"></div>
-
-<section id="about">
-  <div class="about-inner">
-    <p class="about-eyebrow reveal">The Standard</p>
-    <img src="/images/founder.png" alt="Founder" class="about-img reveal delay-1" onerror="this.style.display='none'" />
-    <h2 class="about-headline reveal delay-1">This Is The Standard.</h2>
-    <p class="about-body reveal delay-2">This isn't motivation. This is a system.<br>Built through discipline, pressure, and relentless execution.</p>
-  </div>
-</section>
-
-<div class="strip"></div>
-
-<section class="act-section" id="act-i">
-  <span class="act-number">I</span>
+<section class="section-padding act-section" id="act-i">
   <div class="act-inner">
     <div class="reveal-left">
-      <p class="act-meta">Act I · The Foundation</p>
       <h2 class="act-title">The Dojo of Discipline</h2>
       <blockquote class="act-quote">"The successful warrior is the average man, with laser-like focus."</blockquote>
-      <p class="act-story">Before power comes stillness. The foundation is built here, in the dark, before anyone is watching.</p>
+      <p>Mastering yourself in the dark is how you shine in the light. No excuses.</p>
     </div>
-    <div class="reveal-right delay-2">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-1" onclick="playVideo(1, 'https://www.youtube.com/embed/2TkjGH-dKmo')">
-          <div class="video-thumb-bg" style="background-image: url('/images/Bruce Lee.png');"></div>
-          <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        </div>
-        <div class="video-frame-wrap" id="frame-1"></div>
+    <div class="video-wrap">
+      <div class="video-thumb" id="thumb-1" onclick="playVideo(1, 'https://www.youtube.com/embed/2TkjGH-dKmo')">
+        <div class="video-thumb-bg" style="background-image: url('images/Bruce Lee.png');"></div>
+        <div class="video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
+      <div class="video-frame-wrap" id="frame-1"></div>
     </div>
   </div>
 </section>
 
-<section class="act-section" id="act-ii">
-  <span class="act-number">II</span>
+<section class="section-padding act-section" id="act-ii">
   <div class="act-inner reversed">
-    <div class="reveal-left delay-1">
+    <div class="reveal-right">
       <div class="video-wrap">
         <div class="video-thumb" id="thumb-2" onclick="playVideo(2, 'https://www.youtube.com/embed/M3psO0lonH4')">
-          <div class="video-thumb-bg" style="background-image: url('/images/Rocky.png');"></div>
-          <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+          <div class="video-thumb-bg" style="background-image: url('images/Rocky.png');"></div>
+          <div class="video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
         </div>
         <div class="video-frame-wrap" id="frame-2"></div>
       </div>
     </div>
-    <div class="reveal-right delay-2">
-      <p class="act-meta">Act II · The Fight</p>
-      <h2 class="act-title">The Meat Locker of Motivation</h2>
-      <blockquote class="act-quote">"It ain't about how hard you hit. It's about how hard you can get hit and keep moving forward."</blockquote>
-      <p class="act-story">The fight begins when motivation fades. This is endurance. This is grit.</p>
+    <div class="reveal-left">
+      <h2 class="act-title">The Meat Locker</h2>
+      <blockquote class="act-quote">"It ain't about how hard you hit. It's about how hard you can get hit."</blockquote>
+      <p>The fight begins when motivation fades. This is raw Philadelphia grit.</p>
     </div>
   </div>
 </section>
 
-<section class="act-section" id="act-iii">
-  <span class="act-number">III</span>
+<section class="section-padding act-section" id="act-iii">
   <div class="act-inner">
     <div class="reveal-left">
-      <p class="act-meta">Act III · The Machine</p>
-      <h2 class="act-title">The Relentless Machine</h2>
+      <h2 class="act-title">Relentless Machine</h2>
       <blockquote class="act-quote">"Strength does not come from winning. Your struggles develop your strengths."</blockquote>
-      <p class="act-story">You are no longer driven by emotion. You execute. Systems, reps, outcomes.</p>
+      <p>Calculated precise execution. No hesitation. Just the standard.</p>
     </div>
-    <div class="reveal-right delay-2">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-3" onclick="playVideo(3, 'https://www.youtube.com/embed/3PQZSvcPRPQ')">
-          <div class="video-thumb-bg" style="background-image: url('/images/Arnie.png');"></div>
-          <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        </div>
-        <div class="video-frame-wrap" id="frame-3"></div>
+    <div class="video-wrap">
+      <div class="video-thumb" id="thumb-3" onclick="playVideo(3, 'https://www.youtube.com/embed/3PQZSvcPRPQ')">
+        <div class="video-thumb-bg" style="background-image: url('images/Arnie.png');"></div>
+        <div class="video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
+      <div class="video-frame-wrap" id="frame-3"></div>
     </div>
   </div>
 </section>
 
-<section class="act-section" id="act-iv">
-  <span class="act-number">IV</span>
+<section class="section-padding act-section" id="act-iv">
   <div class="act-inner reversed">
-    <div class="reveal-left delay-1">
-      <div class="video-wrap">
-        <div class="video-thumb wide" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
-          <div class="video-thumb-bg" style="background-image: url('/images/Batman Dark Knight.png');"></div>
-          <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        </div>
-        <div class="video-frame-wrap wide" id="frame-4"></div>
+    <div class="video-wrap">
+      <div class="video-thumb square" id="thumb-4" onclick="playVideo(4, 'https://www.youtube.com/embed/dbjbnrNNM64')">
+        <div class="video-thumb-bg" style="background-image: url('images/Batman Dark Knight.png');"></div>
+        <div class="video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
+      <div class="video-frame-wrap" id="frame-4"></div>
     </div>
-    <div class="reveal-right delay-2">
-      <p class="act-meta">Act IV · The Purpose</p>
-      <h2 class="act-title">The Vigilante of Justice</h2>
+    <div class="reveal-left">
+      <h2 class="act-title">The Vigilante</h2>
       <blockquote class="act-quote">"It's not who I am underneath, but what I do that defines me."</blockquote>
-      <p class="act-story">Your strength is no longer for you alone. It protects others. You operate in silence.</p>
+      <p>Your purpose is found in the weight you carry for others.</p>
     </div>
   </div>
 </section>
 
-<section class="act-section" id="act-v">
-  <span class="act-number">V</span>
+<section class="section-padding act-section" id="act-v">
   <div class="act-inner">
     <div class="reveal-left">
-      <p class="act-meta">Act V · The Legacy</p>
-      <h2 class="act-title">The Master of the Universe</h2>
+      <h2 class="act-title">Master of the Universe</h2>
       <blockquote class="act-quote">"By the power of Grayskull... I HAVE THE POWER!"</blockquote>
-      <p class="act-story">The final evolution is not personal power — it is inspiration. This is legacy.</p>
+      <p>Own your power. Leave a legacy that remains when you are gone.</p>
     </div>
-    <div class="reveal-right delay-2">
-      <div class="video-wrap">
-        <div class="video-thumb wide" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
-          <div class="video-thumb-bg" style="background-image: url('/images/He Man.png');"></div>
-          <div class="video-overlay"><div class="play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div></div>
-        </div>
-        <div class="video-frame-wrap wide" id="frame-5"></div>
+    <div class="video-wrap">
+      <div class="video-thumb square" id="thumb-5" onclick="playVideo(5, 'https://www.youtube.com/embed/ZbGvK-lgWSM')">
+        <div class="video-thumb-bg" style="background-image: url('images/He Man.png');"></div>
+        <div class="video-overlay"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
       </div>
+      <div class="video-frame-wrap" id="frame-5"></div>
     </div>
   </div>
 </section>
-
-<div class="strip"></div>
 
 <section id="final-cta">
-  <h2 class="cta-headline reveal">Only you can become relentless in your pursuits - so don't give up</h2>
-  <p class="cta-subtext reveal delay-1">No excuses. No shortcuts. Relentless is the standard.</p>
-  <div class="cta-grid reveal delay-2">
-    <a href="https://www.youtube.com/@relentlessasstandard" target="_blank" class="btn-cta featured">▶ Watch on YouTube</a>
-    <a href="https://www.instagram.com/relentless_as_standard/" target="_blank" class="btn-cta">Follow on Instagram</a>
+  <h2 class="cta-headline">Only you can become relentless in your pursuits - so don't give up</h2>
+  <div class="social-grid">
+    <a href="https://www.instagram.com/relentless_as_standard/" class="social-card" target="_blank">
+      <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z"/></svg>
+      <span>INSTAGRAM</span>
+    </a>
+    <a href="https://www.tiktok.com/@relentlessasstandard" class="social-card" target="_blank">
+      <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.52V6.76a4.85 4.85 0 01-1.02-.07z"/></svg>
+      <span>TIKTOK</span>
+    </a>
+    <a href="https://www.youtube.com/@relentlessasstandard" class="social-card" target="_blank">
+      <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      <span>YOUTUBE</span>
+    </a>
   </div>
 </section>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Relentless<span>.</span></div>
-    <div class="footer-socials">
-      <a href="https://www.instagram.com/relentless_as_standard/" target="_blank">Instagram</a>
-      <a href="https://www.tiktok.com/@relentlessasstandard" target="_blank">TikTok</a>
-    </div>
-    <p>© 2026 Relentless Is The Standard.</p>
-  </div>
+  <div class="footer-logo">Relentless.<span>As.Standard</span></div>
+  <p>© 2026 Relentless.As.Standard - All Rights Reserved.</p>
 </footer>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+  });
 
-  const hamburger = document.getElementById('hamburger'), mobileMenu = document.getElementById('mobileMenu'), mobileClose = document.getElementById('mobileClose');
-  hamburger.onclick = () => mobileMenu.classList.add('open');
-  mobileClose.onclick = () => mobileMenu.classList.remove('open');
-
-  function playVideo(id, embedUrl) {
-    const thumb = document.getElementById('thumb-' + id), frame = document.getElementById('frame-' + id);
-    thumb.style.display = 'none';
-    frame.innerHTML = `<iframe src="${embedUrl}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+  function playVideo(id, url) {
+    const thumb = document.getElementById('thumb-' + id);
+    const frame = document.getElementById('frame-' + id);
+    frame.innerHTML = `<iframe src="${url}?autoplay=1&rel=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
     frame.classList.add('active');
   }
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }});
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
